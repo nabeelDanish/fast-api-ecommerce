@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment
+.env
+venv/
+.env.*
+
+# Dependencies
+/.venv
+/vendor/
+/lib/
+/pip/
+/dist/
+/build/
+*.egg-info/
+.eggs/
+*.egg
+*.egg-info
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+*.bak
+
+# Logs
+*.log
+
+# Database
+db.sqlite3
+database.sqlite3*
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
