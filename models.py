@@ -62,6 +62,6 @@ product_pydanticIn = pydantic_model_creator(
     name="ProductIn",
     exclude=(
         "percentage_discount",
-        "id",
+        "id_product",
     ),
 )

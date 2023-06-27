@@ -14,17 +14,18 @@ from dotenv import dotenv_values
 from pydantic import BaseModel, EmailStr
 from typing import List
 
-from .models import User
+from models import User
 
 credentials = dotenv_values(".env")
 
 config = ConnectionConfig(
     MAIL_USERNAME=credentials["EMAIL"],
-    MAIL_PASSWORD=["PASSWORD"],
-    MAIL_FROM=["EMAIL"],
-    MAIL_PORT=587,
-    MAIL_SERVER="smpt.gmail.com",
+    MAIL_PASSWORD=credentials["PASSWORD"],
+    MAIL_FROM=credentials["EMAIL"],
+    MAIL_PORT=465,
+    MAIL_SERVER="smtp.gmail.com",
     MAIL_SSL_TLS=True,
+    MAIL_STARTTLS=False,
     USE_CREDENTIALS=True,
 )
 
@@ -35,11 +36,11 @@ class EmailSchema(BaseModel):
 
 async def send_email(email: EmailSchema, instance: User):
     token_data = {
-        "id": instance.id,
+        "id_user": instance.id_user,
         "username": instance.username,
     }
 
-    token = jwt.encode(token_data, credentials["SECRET"])
+    token = jwt.encode(token_data, credentials["SECRET"], algorithm="HS256")
 
     template = f"""
         <!DOCTYPE html>
